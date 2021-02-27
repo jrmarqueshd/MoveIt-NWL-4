@@ -1,3 +1,5 @@
+import * as workerTimers from "worker-timers";
+
 import {
 	createContext,
 	ReactNode,
@@ -20,8 +22,8 @@ interface CountdownContextTypes {
 	seconds: number;
 }
 
-const INITIAL_TIME = 30 * 60;
-let COUNTDOWN_TIMEOUT: NodeJS.Timeout;
+const INITIAL_TIME = 25 * 60;
+let COUNTDOWN_TIMEOUT: number;
 
 export const CountdownContext = createContext({} as CountdownContextTypes);
 
@@ -40,7 +42,7 @@ export function CountdownProvider({ children }: CountdownType) {
 	}
 
 	function resetCountDown() {
-		clearTimeout(COUNTDOWN_TIMEOUT);
+		workerTimers.clearTimeout(COUNTDOWN_TIMEOUT);
 		setIsActive(false);
 		setTime(INITIAL_TIME);
 		setHasFinish(false);
@@ -48,7 +50,7 @@ export function CountdownProvider({ children }: CountdownType) {
 
 	useEffect(() => {
 		if (isActive && time > 0) {
-			COUNTDOWN_TIMEOUT = setTimeout(() => {
+			COUNTDOWN_TIMEOUT = workerTimers.setTimeout(() => {
 				setTime(time - 1);
 			}, 1000);
 		} else if (isActive && time === 0) {

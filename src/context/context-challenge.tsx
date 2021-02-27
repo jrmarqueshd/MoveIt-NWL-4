@@ -42,7 +42,6 @@ export function ChallengeProvider({ children, ...rest }: ChallengeType) {
 		rest.challengesCompleted ?? 0
 	);
 	const [openModalLevelup, setOpenModalLevelup] = useState(false);
-
 	const [activeChallenge, setActiveChallenge] = useState(null);
 
 	const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
@@ -71,14 +70,20 @@ export function ChallengeProvider({ children, ...rest }: ChallengeType) {
 		new Audio("/notification.mp3").play();
 
 		if (Notification.permission === "granted") {
-			new Notification("Novo desafio 💪", {
-				body: `Valendo ${challenge.amount} xp`,
+			new Notification("Novo Desafio 🥊", {
+				body: `Valendo ${challenge.amount} xp!`,
 			});
 		}
 	}
 
 	function resetChallenge() {
 		setActiveChallenge(null);
+
+		if (Notification.permission === "granted") {
+			new Notification("Desafio cancelado! 😔", {
+				body: `Comece um novo desafio para subir para o prómixo nível!`,
+			});
+		}
 	}
 
 	function closeLeveupModal() {
@@ -100,6 +105,12 @@ export function ChallengeProvider({ children, ...rest }: ChallengeType) {
 		setCurrentExperience(finalExperience);
 		setActiveChallenge(null);
 		setChallengesCompleted(challengesCompleted + 1);
+
+		if (Notification.permission === "granted") {
+			new Notification("Desafio concluído! 🚀", {
+				body: `Comece um novo desafio para subir para o prómixo nível!`,
+			});
+		}
 	}
 
 	return (
