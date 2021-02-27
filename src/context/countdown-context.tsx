@@ -20,7 +20,7 @@ interface CountdownContextTypes {
 	seconds: number;
 }
 
-const INITIAL_TIME = 0.05 * 60;
+const INITIAL_TIME = 30 * 60;
 let COUNTDOWN_TIMEOUT: NodeJS.Timeout;
 
 export const CountdownContext = createContext({} as CountdownContextTypes);
