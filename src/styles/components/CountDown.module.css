@@ -13,7 +13,7 @@
 	justify-content: space-evenly;
 	background-color: var(--white);
 	box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
-	font-size: 8.5rem;
+	font-size: 6.5rem;
 	text-align: center;
 }
 
@@ -69,4 +69,10 @@
 	color: var(--text);
 	cursor: not-allowed;
 	border-bottom: 3px solid var(--gren);
+}
+
+@media screen and (min-width: 768px) {
+	.countDownContainer div {
+		font-size: 8.5rem;
+	}
 }
