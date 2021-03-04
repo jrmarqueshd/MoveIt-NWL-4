@@ -28,6 +28,12 @@ export default function CountDown() {
 				</Head>
 			)}
 
+			{hasFinish && (
+				<Head>
+					<title>Novo Desafio 🥊 | MoveIt Running</title>
+				</Head>
+			)}
+
 			<div className={styles.countDownContainer}>
 				<div>
 					<span>{minuteLeft}</span>
@@ -54,7 +60,11 @@ export default function CountDown() {
 							onClick={resetCountDown}
 							className={`${styles.countDownButton} ${styles.countDownButtonActive}`}
 						>
-							Abandonar Ciclo
+							Abandonar Ciclo <img src="icons/close-icon.svg" alt="close" />
+							<div
+								style={{ width: "100%" }}
+								className={styles.progressCountDown}
+							></div>
 						</button>
 					) : (
 						<button
@@ -62,7 +72,7 @@ export default function CountDown() {
 							onClick={startCountDown}
 							className={styles.countDownButton}
 						>
-							Iniciar um ciclo
+							Iniciar um ciclo <img src="icons/play_arrow.svg" alt="play" />
 						</button>
 					)}
 				</>

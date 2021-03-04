@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import Head from "next/head";
+import { useContext, useEffect } from "react";
 import { ChallengeContext } from "../context/context-challenge";
 import styles from "../styles/components/LevelupModal.module.css";
 
@@ -7,9 +8,17 @@ export default function LevelupModal() {
 		ChallengeContext
 	);
 
+	useEffect(() => {
+		if (openModalLevelup) new Audio("/level_up.mp3").play();
+	}, [openModalLevelup]);
+
 	return (
 		openModalLevelup && (
 			<div className={styles.overlay}>
+				<Head>
+					<title>Level Up | MoveIt</title>
+				</Head>
+
 				<div className={styles.modalContainer}>
 					<header>{level}</header>
 					<strong>Parabéns</strong>

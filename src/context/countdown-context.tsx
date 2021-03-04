@@ -18,11 +18,12 @@ interface CountdownContextTypes {
 	resetCountDown: () => void;
 	isActive: boolean;
 	hasFinish: boolean;
+	time: number;
 	minutes: number;
 	seconds: number;
 }
 
-const INITIAL_TIME = 25 * 60;
+const INITIAL_TIME = 15 * 60;
 let COUNTDOWN_TIMEOUT: number;
 
 export const CountdownContext = createContext({} as CountdownContextTypes);
@@ -65,6 +66,7 @@ export function CountdownProvider({ children }: CountdownType) {
 			value={{
 				resetCountDown,
 				startCountDown,
+				time,
 				isActive,
 				hasFinish,
 				minutes,

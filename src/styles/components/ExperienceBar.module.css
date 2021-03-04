@@ -20,7 +20,7 @@
 .experienceBar > div > div {
 	height: 4px;
 	border-radius: 4px;
-	background-color: var(--gren);
+	background-color: var(--green);
 }
 
 span.currentExperience {
